@@ -14,7 +14,6 @@
         android:src="@drawable/doragologo"
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
-        android:scaleType="centerInside"
         />
 
     <Button
