@@ -9,12 +9,12 @@
     tools:showIn="@layout/activity_main">
 
     <ImageView
-        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/doragologo"
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
+        android:scaleType="centerInside"
         />
 
     <Button
@@ -24,10 +24,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display2"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:layout_marginBottom="@dimen/button_margin_bottom"
-        android:paddingHorizontal="5dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
         android:onClick="startTheGame"
-        />
+            />
 </RelativeLayout>
