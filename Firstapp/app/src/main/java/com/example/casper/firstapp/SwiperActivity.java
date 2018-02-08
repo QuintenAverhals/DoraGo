@@ -22,11 +22,14 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cz.mendelu.busItWeek.library.StoryLine;
+
 public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicLevelReaderValueListener {
 
     private AudioMeter audioMeter;
     private Thread mRecorderThread;
 
+    private StoryLine storyLine;
     private ProgressBar progressBar;
     private boolean hasUserShouted;
 
@@ -46,6 +49,7 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
 
         mHandler = new Handler(Looper.getMainLooper());
 
+        storyLine = StoryLine.open(this, MyDemoStoryLineDBHelper.class);
         hasUserShouted = false;
         checkMicrophoneAccess();
     }
@@ -82,8 +86,9 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
         mHandler.postDelayed(
                 new Runnable() {
                     public void run() {
-                        Intent intent = new Intent(SwiperActivity.this, FinishActivity.class);
-                        startActivity(intent);
+                        storyLine.currentTask().finish(true);
+                        Intent i = new Intent(SwiperActivity.this, FinishActivity.class);
+                        startActivity(i);
                     }
                 },
                 1000);

@@ -78,6 +78,15 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .answer("ball")
                 .puzzleDone()
                 .taskDone();
+
+        builder.addGPSTask("swiper_1")
+                .location(49.209543, 16.614235)
+                .radius(500000)
+                .simplePuzzle()
+                .question("swiper")
+                .answer("swiper no swiping")
+                .puzzleDone()
+                .taskDone();
     }
 
 

@@ -202,16 +202,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void runPuzzleActivity (Puzzle puzzle){
         if (puzzle instanceof SimplePuzzle){
-            Intent intent = new Intent(this, SearchItemActivity.class);
-            startActivity(intent);
-        }
-
-        if (puzzle instanceof ImageSelectPuzzle){
+            SimplePuzzle sp = (SimplePuzzle) puzzle;
+            Intent intent = null;
+            switch(sp.getQuestion()) {
+                case "qrcode":
+                    intent = new Intent(this, SearchItemActivity.class);
+                    break;
+                case "swiper":
+                    intent = new Intent(this, SwiperActivity.class);
+                    break;
+            }
+            if(intent != null){
+                startActivity(intent);
+            }
+        }else if (puzzle instanceof ImageSelectPuzzle){
             Intent intent = new Intent(this,ImageSelectActivity.class);
             startActivity(intent);
-        }
-
-        if (puzzle instanceof ChoicePuzzle){
+        }else if (puzzle instanceof ChoicePuzzle){
             Intent intent = new Intent(this,TextSelectActivity.class);
             startActivity(intent);
         }
@@ -221,9 +228,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onResume();
         currentTask = storyLine.currentTask();
         if (currentTask == null){
-            //finished the app. game is over.
-            Intent intent = new Intent(this, FinishActivity.class);
-            startActivity(intent);
         }else  {
             initializeListeners();
             updateMarkers();
