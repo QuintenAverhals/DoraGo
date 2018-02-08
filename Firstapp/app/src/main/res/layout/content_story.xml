@@ -12,10 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="30dp"
-        android:paddingVertical="20dp"
+        android:paddingVertical="40dp"
         android:text="@string/storytext"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
+        android:textAlignment="center"
         />
 
     <ImageView
@@ -26,7 +27,7 @@
         android:adjustViewBounds="true"
         android:layout_marginBottom="100dp"
         android:paddingHorizontal="40dp"
-        android:src="@drawable/SwiperStealing" />
+        android:src="@drawable/swiper_stealing" />
 
     <Button
         android:id="@+id/startApp"
