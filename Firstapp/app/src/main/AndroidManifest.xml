@@ -70,6 +70,10 @@
             android:name=".StoryActivity"
             android:label="@string/storyTitle"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".QRCodeFinish"
+            android:label="@string/storyTitle"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
