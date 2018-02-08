@@ -77,8 +77,12 @@
         <activity
             android:name=".StoryActivity"
             android:label="@string/storyTitle"
+<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
+=======
+            android:theme="@style/AppTheme.NoActionBar" />
+>>>>>>> bd649a5fc5bf16066ef62a0075d585fb52b77a91
     </application>
 
 </manifest>
