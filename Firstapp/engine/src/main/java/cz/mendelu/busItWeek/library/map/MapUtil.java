@@ -28,7 +28,7 @@ public class MapUtil {
      * @param backgroundColor the background color of the marker
      * @param textStyle style of the text
      * @param location location of the marker
-     * @return googla map Marker
+     * @return google map Marker
      */
     public static Marker createColoredCircleMarker(Context context,
                                                    GoogleMap map,
@@ -46,6 +46,11 @@ public class MapUtil {
 
         Bitmap icon = mClusterIconGenerator.makeIcon(text);
         Marker marker = map.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromBitmap(icon)));
+
+
+
+        /* MarkerOptions markerOptions = new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_ma));
+        Marker marker = map.addMarker(markerOptions); */
 
         return marker;
 

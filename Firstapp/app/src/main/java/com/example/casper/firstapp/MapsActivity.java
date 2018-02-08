@@ -1,6 +1,7 @@
     package com.example.casper.firstapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -66,6 +68,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ImageButton qrButton;
 
     private LatLngBounds.Builder builder;
+
+    private Marker userMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
 
-        mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(false);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.setOnMarkerClickListener(this);
@@ -200,6 +204,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 runPuzzleActivity(currentTask.getPuzzle());
             }
         }
+
+        if (userMarker != null) {
+            userMarker.remove();
+        }
+        userMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude()))
+                .title("Current Location")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_doraicon)));
     }
 
     private void runPuzzleActivity (Puzzle puzzle){
@@ -244,10 +255,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (Task task : storyLine.taskList()){
             Marker newMarker = null;
             if (task instanceof GPSTask){
-                newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
             }
             if (task instanceof BeaconTask){
-                newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
                 BeaconDefinition definition = new BeaconDefinition((BeaconTask) task) {
                     @Override
                     public void execute() {
@@ -257,7 +268,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 beaconUtil.addBeacon(definition);
             }
             if (task instanceof CodeTask){
-                newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
             }
 
             builder.include(new LatLng(task.getLatitude(), task.getLongitude()));
@@ -268,16 +279,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             zoomToNewTask(new LatLng(currentTask.getLatitude(), currentTask.getLongitude()));
         }
         updateMarkers();
-
-        /*mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
-            @Override
-            public void onMapLoaded() {
-                LatLngBounds bounds = builder.build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 500);
-                mMap.animateCamera(cameraUpdate);
-            }
-        });*/
     }
+
+    private static Marker createIconMarker(Context context,
+                                           GoogleMap map,
+                                           String text,
+                                           int backgroundColor,
+                                           int textStyle,
+                                           LatLng location) {
+        MarkerOptions markerOptions = new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map1));
+        Marker marker = map.addMarker(markerOptions);
+        return  marker;
+    };
+
     private void updateMarkers(){
         for (Map.Entry<Task, Marker> entry: markers.entrySet()){
             if (currentTask != null){
@@ -296,7 +310,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Skip task?");
         builder.setMessage("Do you want to skip the current task?");
         builder.setCancelable(true);
@@ -327,7 +341,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         zoomToNewTask(new LatLng(currentTask.getLatitude(), currentTask.getLongitude()));
 
-        builder.create().show();
+        builder.create().show();*/
 
         return false;
     }
