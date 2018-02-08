@@ -26,7 +26,7 @@ import cz.mendelu.busItWeek.library.Task;
 
 public class ImageSelectActivity extends AppCompatActivity {
 
-    private TextView counter;
+    //private TextView counter;
     private TextView question;
     private RecyclerView imageList;
     private RecyclerView listOfAnswers;
@@ -42,7 +42,7 @@ public class ImageSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_select);
 
-        counter = findViewById(R.id.counter);
+        //counter = findViewById(R.id.counter);
         question = findViewById(R.id.question);
         imageList = findViewById(R.id.imageList);
 
