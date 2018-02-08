@@ -61,8 +61,11 @@
         <activity
             android:name=".SwiperActivity"
             android:label="@string/title_activity_swiper"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchItemActivity"
+            android:label="@string/title_activity_search_item"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-
     </application>
 
 </manifest>
