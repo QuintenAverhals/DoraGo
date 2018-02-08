@@ -11,7 +11,7 @@ import cz.mendelu.busItWeek.library.builder.StoryLineBuilder;
 public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
 
     public MyDemoStoryLineDBHelper() {
-        super(14);
+        super(15);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .addChoice("London",false)
                 .puzzleDone()
                 .taskDone();
-                */
+
         builder.addGPSTask("1")
                 .location(49.209543,16.614235)
                 .radius(500000)
@@ -50,7 +50,7 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .question("Select image?")
                 .puzzleDone()
                 .taskDone();
-        /*builder.addCodeTask("1")
+        builder.addCodeTask("1")
                 .qr("Brno")
                 .location(49.209543,16.614235)
                 .simplePuzzle()
@@ -59,11 +59,10 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .puzzleDone()
                 .taskDone();*/
 
-
-        /*
         // Riddle 1
         // TODO Specify location
-        builder.addGPSTask("riddle1")
+
+        builder.addGPSTask("1")
                 .location(49.209543, 16.614235)
                 .radius(50)
                 .choicePuzzle()
@@ -74,10 +73,10 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .addChoice("Cow", false)
                 .puzzleDone()
                 .taskDone();
-
+        /*
         // Riddle 2
         // TODO Specify location
-        builder.addGPSTask("riddle2")
+        builder.addGPSTask("riddle_2")
                 .location(0, 0)
                 .radius(50)
                 .choicePuzzle()
