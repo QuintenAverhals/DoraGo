@@ -372,5 +372,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(cameraUpdate);
         //zoomToNewTask(new LatLng(currentTask.getLatitude(), currentTask.getLongitude()));
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
 

@@ -15,4 +15,7 @@ public class FinishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_finish);
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

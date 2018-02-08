@@ -54,4 +54,7 @@ public class SimplePuzzleActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }
