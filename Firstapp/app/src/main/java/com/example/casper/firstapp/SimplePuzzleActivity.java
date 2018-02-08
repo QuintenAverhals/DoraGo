@@ -38,7 +38,6 @@ public class SimplePuzzleActivity extends AppCompatActivity {
         currentTask = storyLine.currentTask();
         puzzle = (SimplePuzzle) currentTask.getPuzzle();
         question.setText(puzzle.getQuestion());
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
     }
     public void answerQuestion(View view){
