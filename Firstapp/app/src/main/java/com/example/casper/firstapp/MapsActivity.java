@@ -202,7 +202,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void runPuzzleActivity (Puzzle puzzle){
         if (puzzle instanceof SimplePuzzle){
-            Intent intent = new Intent(this,SimplePuzzleActivity.class);
+            Intent intent = new Intent(this, SearchItemActivity.class);
             startActivity(intent);
         }
 
