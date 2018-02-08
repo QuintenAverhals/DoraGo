@@ -9,11 +9,14 @@
     tools:showIn="@layout/activity_main">
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
+        android:adjustViewBounds="true"
         android:layout_height="wrap_content"
         android:src="@drawable/doragologo"
         android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
+        android:layout_centerVertical="true"
+        android:paddingBottom="60dp"
+        android:paddingHorizontal="10dp"
         />
 
     <Button

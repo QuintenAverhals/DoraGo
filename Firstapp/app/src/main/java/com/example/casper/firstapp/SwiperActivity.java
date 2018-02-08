@@ -3,6 +3,9 @@ package com.example.casper.firstapp;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +28,9 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
     private Thread mRecorderThread;
 
     private ProgressBar progressBar;
+    private boolean hasUserShouted;
+
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,9 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
         audioMeter = new AudioMeter(this, LevelMethod.dBFS);
         mRecorderThread = new Thread(audioMeter);
 
+        mHandler = new Handler(Looper.getMainLooper());
+
+        hasUserShouted = false;
         checkMicrophoneAccess();
     }
 
@@ -60,7 +69,6 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    start();
                     mRecorderThread.start();
                 } else {
                     Toast.makeText(this, "microphone dead", Toast.LENGTH_LONG).show();
@@ -70,40 +78,46 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
     }
 
     private void userShouted(){
-        stop();
-        Intent intent = new Intent(this, FinishActivity.class);
-        startActivity(intent);
+        hasUserShouted = true;
+        mHandler.postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Intent intent = new Intent(SwiperActivity.this, FinishActivity.class);
+                        startActivity(intent);
+                    }
+                },
+                2000);
     }
+
 
     @Override
     public void valueCalculated(double level) {
-        progressBar.setProgress(100 - (int) Math.abs(level));
-        if(level > -3) {
+        progressBar.setProgress(50 + (int) level);
+        if(level > -3 && !hasUserShouted) {
             userShouted();
         }
     }
 
-    public void stop() {
-        if (audioMeter.isRunning()) {
-            audioMeter.stop();
-            try {
+    public void stopRecording() {
+        try {
+            if (audioMeter.isRunning()) {
+                audioMeter.stop();
                 mRecorderThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            Log.i("tag", e.getMessage());
         }
     }
 
     @Override
     protected void onStop() {
-        stopit();
+        stopRecording();
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        stopit();
-
+        stopRecording();
         super.onDestroy();
     }
 
