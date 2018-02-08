@@ -65,8 +65,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private BeaconUtil beaconUtil;
     private HashMap<Task, Marker> markers = new HashMap<>();
 
-    private ImageButton qrButton;
-
     private LatLngBounds.Builder builder;
 
     private Marker userMarker;
@@ -92,9 +90,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setInterval(5000);
 
         beaconUtil = new BeaconUtil(this);
-
-        qrButton = findViewById(R.id.qr_code_button);
-
     }
 
 
@@ -161,24 +156,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
                 }
             }
-            qrButton.setVisibility(View.GONE);
-        }
 
-        if (currentTask != null){
             if (currentTask instanceof BeaconTask){
                 // i have beacon task
                 beaconUtil.startRanging();
-                qrButton.setVisibility(View.GONE);
             }
         }
-
-        if (currentTask != null){
-            if (currentTask instanceof CodeTask){
-                // i have QR task
-                qrButton.setVisibility(View.VISIBLE);
-            }
-        }
-
     }
 
     private void cancelListeners(){
@@ -271,15 +254,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 };
                 beaconUtil.addBeacon(definition);
             }
-            if (task instanceof CodeTask){
-                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
-            }
 
             builder.include(new LatLng(task.getLatitude(), task.getLongitude()));
 
-            newMarker.setVisible(false);
+            if(newMarker != null){
+                newMarker.setVisible(false);
+                markers.put(task,newMarker);
+            }
 
-            markers.put(task,newMarker);
             zoomToNewTask(new LatLng(currentTask.getLatitude(), currentTask.getLongitude()));
         }
         updateMarkers();
@@ -350,25 +332,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return false;
     }
 
-    public void scanForQRCode(View view) {
-        QRCodeUtil.startQRScan(this);
-
-        //Intent intent = new Intent(this,FinishActivity.class);
-        //startActivityForResult(intent, 100);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         currentTask = storyLine.currentTask();
-        if (currentTask != null && currentTask instanceof CodeTask) {
-            String result = QRCodeUtil.onScanResult(this, requestCode, resultCode, data);
-            CodeTask codeTask = (CodeTask) currentTask;
-            if (codeTask.getQR().equals(result)) {
-                runPuzzleActivity(currentTask.getPuzzle());
-            }
-        }
     }
 
     private void zoomToNewTask(LatLng position) {

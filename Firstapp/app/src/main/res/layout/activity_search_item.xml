@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.casper.firstapp.MapsActivity">
+    tools:context="com.example.casper.firstapp.SearchItemActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -12,8 +12,9 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
+            app:title="Find the item"
+            app:subtitle="And scan the QR-Code"
             android:id="@+id/toolbar"
-            app:title="Map"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -21,17 +22,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.casper.firstapp.MapsActivity" />
+    <include layout="@layout/content_search_item" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/qr_code_button"
+        android:onClick="handleQRButtonClick"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_qrcode"
+        />
 
 </android.support.design.widget.CoordinatorLayout>
-
-
-
