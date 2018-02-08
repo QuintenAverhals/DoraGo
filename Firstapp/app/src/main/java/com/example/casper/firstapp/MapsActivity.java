@@ -188,6 +188,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
 
+        createUserIcon(location);
+    }
+
+    private void createUserIcon(Location location) {
         if (userMarker != null) {
             userMarker.remove();
         }

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void startTheGame(View view) {
        // Toast.makeText(this,"start",Toast.LENGTH_SHORT).show();
         Log.i(TAG,"User clicked the start button");
-        Intent intent = new Intent(this, SwiperActivity.class);
+        Intent intent = new Intent(this, SearchItemActivity.class);
         startActivity(intent);
     }
 
