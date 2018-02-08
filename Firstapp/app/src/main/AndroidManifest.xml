@@ -77,10 +77,8 @@
         <activity
             android:name=".StoryActivity"
             android:label="@string/storyTitle"
-<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
-=======
 
         <activity
             android:name=".QRCodeFinish"
