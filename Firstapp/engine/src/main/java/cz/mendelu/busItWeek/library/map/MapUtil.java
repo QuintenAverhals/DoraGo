@@ -50,7 +50,4 @@ public class MapUtil {
         return marker;
 
     }
-
-
-
 }

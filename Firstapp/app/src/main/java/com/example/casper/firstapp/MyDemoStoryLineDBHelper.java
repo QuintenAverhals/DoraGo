@@ -38,6 +38,7 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .addChoice("London",false)
                 .puzzleDone()
                 .taskDone();
+                */
         builder.addGPSTask("1")
                 .location(49.209543,16.614235)
                 .radius(500000)
@@ -48,14 +49,49 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .addImage(R.drawable.image_4, false)
                 .question("Select image?")
                 .puzzleDone()
-                .taskDone();*/
-        builder.addCodeTask("1")
+                .taskDone();
+        /*builder.addCodeTask("1")
                 .qr("Brno")
                 .location(49.209543,16.614235)
                 .simplePuzzle()
                 .question("Who am I?")
                 .answer("1")
                 .puzzleDone()
+                .taskDone();*/
+
+
+        /*
+        // Riddle 1
+        // TODO Specify location
+        builder.addGPSTask("riddle1")
+                .location(49.209543, 16.614235)
+                .radius(50)
+                .choicePuzzle()
+                .question("What's furry, swings from tree to tree and goes ooh-ooh ahh-ahh?")
+                .hint("Think about Boots")
+                .addChoice("Dog", false)
+                .addChoice("Monkey", true)
+                .addChoice("Cow", false)
+                .puzzleDone()
                 .taskDone();
+
+        // Riddle 2
+        // TODO Specify location
+        builder.addGPSTask("riddle2")
+                .location(0, 0)
+                .radius(50)
+                .choicePuzzle()
+                .question("What is yellow on the outside, white on the inside and you can peel it?")
+                .hint("Boots favourite food")
+                .addChoice("Apple", false)
+                .addChoice("Lemon", false)
+                .addChoice("Banana", true)
+                .puzzleDone()
+                .taskDone();
+                */
     }
+
+
+
+
 }
