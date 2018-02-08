@@ -1,6 +1,7 @@
     package com.example.casper.firstapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -244,10 +246,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (Task task : storyLine.taskList()){
             Marker newMarker = null;
             if (task instanceof GPSTask){
-                newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                //newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
             }
             if (task instanceof BeaconTask){
-                newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                //newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
                 BeaconDefinition definition = new BeaconDefinition((BeaconTask) task) {
                     @Override
                     public void execute() {
@@ -257,7 +261,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 beaconUtil.addBeacon(definition);
             }
             if (task instanceof CodeTask){
-                newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                //newMarker = MapUtil.createColoredCircleMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
+                newMarker = createIconMarker(this,mMap,task.getName(),R.color.colorPrimary,R.style.marker_text_style, new LatLng(task.getLatitude(),task.getLongitude()));
             }
 
             builder.include(new LatLng(task.getLatitude(), task.getLongitude()));
@@ -278,6 +283,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });*/
     }
+
+    private static Marker createIconMarker(Context context,
+                                           GoogleMap map,
+                                           String text,
+                                           int backgroundColor,
+                                           int textStyle,
+                                           LatLng location) {
+        MarkerOptions markerOptions = new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map1));
+        Marker marker = map.addMarker(markerOptions);
+        return  marker;
+    };
+
     private void updateMarkers(){
         for (Map.Entry<Task, Marker> entry: markers.entrySet()){
             if (currentTask != null){
