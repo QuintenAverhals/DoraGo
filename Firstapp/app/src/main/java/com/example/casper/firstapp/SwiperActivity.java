@@ -86,13 +86,21 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
                         startActivity(intent);
                     }
                 },
-                2000);
+                1000);
     }
 
 
     @Override
     public void valueCalculated(double level) {
         progressBar.setProgress(50 + (int) level);
+/*        TODO: Change progressbar color when shouting
+          if(level > -10) {
+            progressBar
+                    .getProgressDrawable()
+                    .setColorFilter(
+                            getResources().getColor(R.color.colorPrimaryDark),
+                            android.graphics.PorterDuff.Mode.SRC_ATOP);
+        }*/
         if(level > -3 && !hasUserShouted) {
             userShouted();
         }
