@@ -1,5 +1,6 @@
 package com.example.casper.firstapp;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.Timer;
@@ -22,12 +24,16 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
     private AudioMeter audioMeter;
     private Thread mRecorderThread;
 
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swiper);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        progressBar = findViewById(R.id.progressBar);
 
         audioMeter = new AudioMeter(this, LevelMethod.dBFS);
         mRecorderThread = new Thread(audioMeter);
@@ -41,7 +47,7 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
                     new String[]{android.Manifest.permission.RECORD_AUDIO},
                     REQUEST_RECORD_AUDIO);
         }else{
-            start();
+            mRecorderThread.start();
         }
     }
 
@@ -55,6 +61,7 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     start();
+                    mRecorderThread.start();
                 } else {
                     Toast.makeText(this, "microphone dead", Toast.LENGTH_LONG).show();
                 }
@@ -62,22 +69,21 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
         }
     }
 
-    private void start(){
-        Toast.makeText(this, "microphone ready", Toast.LENGTH_SHORT).show();
-        mRecorderThread.start();
+    private void userShouted(){
+        stop();
+        Intent intent = new Intent(this, FinishActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void valueCalculated(double level) {
-        if(level > -10){
-            Log.i("value", level + "");
-        }
-        if(level > -5) {
-            stopit();
+        progressBar.setProgress(100 - (int) Math.abs(level));
+        if(level > -3) {
+            userShouted();
         }
     }
 
-    public void stopit() {
+    public void stop() {
         if (audioMeter.isRunning()) {
             audioMeter.stop();
             try {
