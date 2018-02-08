@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.casper.firstapp.ImageSelectActivity"
-    tools:showIn="@layout/activity_image_select">
+    tools:showIn="@layout/activity_image_select"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
