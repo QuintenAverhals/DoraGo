@@ -37,7 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:onClick="startTheGame"
