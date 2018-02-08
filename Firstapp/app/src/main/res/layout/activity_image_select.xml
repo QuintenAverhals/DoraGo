@@ -17,7 +17,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Help Tico find the way"/>
+            app:title="Tico"
+            app:subtitle="find the way"/>
 
     </android.support.design.widget.AppBarLayout>
 
