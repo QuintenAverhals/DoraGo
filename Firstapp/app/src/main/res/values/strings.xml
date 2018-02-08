@@ -9,4 +9,6 @@
     <string name="title_activity_finish">FinishActivity</string>
     <string name="answer_question">Answer question</string>
     <string name="finished">FINISHED!!</string>
+    <string name="title_activity_swiper">SwiperActivity</string>
+    <string name="shout_swiper_dont_steal">Shout \"Swiper dont Steal!\"</string>
 </resources>
