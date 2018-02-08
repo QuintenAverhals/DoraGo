@@ -81,8 +81,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 =======
+
+        <activity
+            android:name=".QRCodeFinish"
+            android:label="@string/storyTitle"
             android:theme="@style/AppTheme.NoActionBar" />
->>>>>>> bd649a5fc5bf16066ef62a0075d585fb52b77a91
     </application>
 
 </manifest>
