@@ -26,10 +26,12 @@ import cz.mendelu.busItWeek.library.Task;
 
 public class ImageSelectActivity extends AppCompatActivity {
 
-    private TextView counter;
+    //private TextView counter;
     private TextView question;
     private RecyclerView imageList;
     private RecyclerView listOfAnswers;
+
+    private Toolbar toolbar;
 
     private StoryLine storyLine;
     private Task currentTask;
@@ -42,9 +44,14 @@ public class ImageSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_select);
 
-        counter = findViewById(R.id.counter);
+        //counter = findViewById(R.id.counter);
         question = findViewById(R.id.question);
         imageList = findViewById(R.id.imageList);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Help Tico find the way");
+
 
         storyLine = StoryLine.open(this, MyDemoStoryLineDBHelper.class);
         currentTask = storyLine.currentTask();
