@@ -61,8 +61,11 @@
         <activity
             android:name=".SwiperActivity"
             android:label="@string/title_activity_swiper"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StoryActivity"
+            android:label="@string/storyTitle"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
