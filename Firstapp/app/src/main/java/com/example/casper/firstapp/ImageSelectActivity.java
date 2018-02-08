@@ -110,4 +110,8 @@ public class ImageSelectActivity extends AppCompatActivity {
             return answers.size();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

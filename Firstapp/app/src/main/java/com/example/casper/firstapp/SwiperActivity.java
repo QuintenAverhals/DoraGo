@@ -129,4 +129,7 @@ public class SwiperActivity extends AppCompatActivity implements AudioMeter.MicL
         super.onDestroy();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }
