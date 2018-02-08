@@ -11,7 +11,7 @@ import cz.mendelu.busItWeek.library.builder.StoryLineBuilder;
 public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
 
     public MyDemoStoryLineDBHelper() {
-        super(15);
+        super(16);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
 
         builder.addGPSTask("1")
                 .location(49.209543, 16.614235)
-                .radius(50000)
+                .radius(500000)
                 .choicePuzzle()
                 .question("What's furry, swings from tree to tree and goes ooh-ooh ahh-ahh?")
                 .hint("Think about Boots")
