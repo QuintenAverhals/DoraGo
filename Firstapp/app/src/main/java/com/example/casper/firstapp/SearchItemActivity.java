@@ -1,6 +1,8 @@
 package com.example.casper.firstapp;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cz.mendelu.busItWeek.library.CodeTask;
@@ -21,6 +25,8 @@ public class SearchItemActivity extends AppCompatActivity {
     private Task currentTask;
     private StoryLine storyLine;
     private FloatingActionButton qrButton;
+    private TextView title;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,17 @@ public class SearchItemActivity extends AppCompatActivity {
 
         storyLine = StoryLine.open(this, MyDemoStoryLineDBHelper.class);
         qrButton = findViewById(R.id.qr_code_button);
+
+        title = findViewById(R.id.itemTitle);
+        image = findViewById(R.id.itemImage);
+
+        SimplePuzzle puzzle = (SimplePuzzle) StoryLine.open(this, MyDemoStoryLineDBHelper.class).currentTask().getPuzzle();
+        String itemName = puzzle.getAnswer();
+
+        title.setText("Find the " + itemName);
+
+        int id = getResources().getIdentifier(itemName, "drawable", getPackageName());
+        image.setImageResource(id);
     }
 
     public void handleQRButtonClick(View view) {
