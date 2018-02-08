@@ -31,8 +31,6 @@ public class ImageSelectActivity extends AppCompatActivity {
     private RecyclerView imageList;
     private RecyclerView listOfAnswers;
 
-    private Toolbar toolbar;
-
     private StoryLine storyLine;
     private Task currentTask;
     private ImageSelectPuzzle puzzle;
@@ -47,11 +45,6 @@ public class ImageSelectActivity extends AppCompatActivity {
         //counter = findViewById(R.id.counter);
         question = findViewById(R.id.question);
         imageList = findViewById(R.id.imageList);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Help Tico find the way");
-
 
         storyLine = StoryLine.open(this, MyDemoStoryLineDBHelper.class);
         currentTask = storyLine.currentTask();
