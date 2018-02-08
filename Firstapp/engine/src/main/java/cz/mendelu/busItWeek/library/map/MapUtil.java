@@ -46,12 +46,9 @@ public class MapUtil {
 
         Bitmap icon = mClusterIconGenerator.makeIcon(text);
         Marker marker = map.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromBitmap(icon)));
-        //Marker marker = map.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromResource(R.drawable.map1)));
+        //Marker marker = map.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.fromResource(R.drawable.map1_bit)));
 
         return marker;
 
     }
-
-
-
 }
