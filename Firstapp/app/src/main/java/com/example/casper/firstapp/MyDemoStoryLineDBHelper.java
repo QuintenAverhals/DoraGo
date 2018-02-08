@@ -11,7 +11,7 @@ import cz.mendelu.busItWeek.library.builder.StoryLineBuilder;
 public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
 
     public MyDemoStoryLineDBHelper() {
-        super(15);
+        super(42);
     }
 
     @Override
@@ -50,17 +50,10 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .question("Select image?")
                 .puzzleDone()
                 .taskDone();
-        builder.addCodeTask("1")
-                .qr("Brno")
-                .location(49.209543,16.614235)
-                .simplePuzzle()
-                .question("Who am I?")
-                .answer("1")
-                .puzzleDone()
-                .taskDone();*/
 
         // Riddle 1
         // TODO Specify location
+                */
 
         builder.addGPSTask("1")
                 .location(49.209543, 16.614235)
@@ -73,21 +66,18 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .addChoice("Cow", false)
                 .puzzleDone()
                 .taskDone();
-        /*
+
         // Riddle 2
         // TODO Specify location
-        builder.addGPSTask("riddle_2")
-                .location(0, 0)
-                .radius(50)
-                .choicePuzzle()
-                .question("What is yellow on the outside, white on the inside and you can peel it?")
-                .hint("Boots favourite food")
-                .addChoice("Apple", false)
-                .addChoice("Lemon", false)
-                .addChoice("Banana", true)
+
+        builder.addGPSTask("qrcode_1")
+                .location(49.209543, 16.614235)
+                .radius(500000)
+                .simplePuzzle()
+                .question("qrcode")
+                .answer("ball")
                 .puzzleDone()
                 .taskDone();
-                */
     }
 
 

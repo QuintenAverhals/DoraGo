@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import cz.mendelu.busItWeek.library.CodeTask;
+import cz.mendelu.busItWeek.library.SimplePuzzle;
 import cz.mendelu.busItWeek.library.StoryLine;
 import cz.mendelu.busItWeek.library.Task;
 import cz.mendelu.busItWeek.library.qrcode.QRCodeUtil;
@@ -40,13 +41,13 @@ public class SearchItemActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        String result = QRCodeUtil.onScanResult(this, requestCode, resultCode, data);
         currentTask = storyLine.currentTask();
-        if (currentTask != null && currentTask instanceof CodeTask) {
-            String result = QRCodeUtil.onScanResult(this, requestCode, resultCode, data);
-            CodeTask codeTask = (CodeTask) currentTask;
-            if (codeTask.getQR().equals(result)) {
-                Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-            }
+        SimplePuzzle puz = (SimplePuzzle) currentTask.getPuzzle();
+
+        if (result != null && result.length() > 0 && result.equals(puz.getAnswer())){
+            currentTask.finish(true);
+            finish();
         }
     }
 }
