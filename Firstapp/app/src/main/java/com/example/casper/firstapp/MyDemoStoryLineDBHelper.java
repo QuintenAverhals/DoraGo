@@ -57,7 +57,7 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
 
         builder.addGPSTask("1")
                 .location(49.209543, 16.614235)
-                .radius(50000)
+                .radius(50)
                 .choicePuzzle()
                 .question("What's furry, swings from tree to tree and goes ooh-ooh ahh-ahh?")
                 .hint("Think about Boots")

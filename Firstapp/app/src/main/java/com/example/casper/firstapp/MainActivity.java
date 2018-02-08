@@ -1,12 +1,14 @@
 package com.example.casper.firstapp;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         storyLine = StoryLine.open(this,MyDemoStoryLineDBHelper.class);
+        Music.doThemeSong(this);
     }
 
     @Override
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public void startTheGame(View view) {
        // Toast.makeText(this,"start",Toast.LENGTH_SHORT).show();
         Log.i(TAG,"User clicked the start button");
-        Intent intent = new Intent(this, SearchItemActivity.class);
+        Intent intent = new Intent(this, StoryActivity.class);
         startActivity(intent);
     }
 
@@ -66,5 +69,19 @@ public class MainActivity extends AppCompatActivity {
         if (task == null){
             //no more tasks. User is finished
         }
+
+        Music.doThemeSong(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Music.doThemeSong(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Music.doThemeSong(this);
     }
 }
