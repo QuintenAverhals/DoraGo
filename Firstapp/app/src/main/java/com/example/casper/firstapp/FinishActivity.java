@@ -31,6 +31,6 @@ public class FinishActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Music.doThemeSong(thisf);
+        Music.doThemeSong(this);
     }
 }
