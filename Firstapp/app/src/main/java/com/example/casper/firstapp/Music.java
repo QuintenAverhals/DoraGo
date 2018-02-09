@@ -8,7 +8,7 @@ import android.media.MediaPlayer;
  */
 
 public class Music {
-    private static MediaPlayer themeSong = null;
+    public static MediaPlayer themeSong = null;
     private static MediaPlayer positiveCheer = null;
 
     public static void doThemeSong(Context context) {
@@ -27,6 +27,7 @@ public class Music {
     public static void doPositiveCheer(Context context) {
         if (positiveCheer == null) {
             positiveCheer = MediaPlayer.create(context, R.raw.cheer_positive);
+            positiveCheer.start();
         }
         else if (positiveCheer.isPlaying()){
             positiveCheer.pause();

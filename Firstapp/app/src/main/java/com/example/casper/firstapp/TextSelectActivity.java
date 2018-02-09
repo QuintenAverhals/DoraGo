@@ -88,8 +88,10 @@ public class TextSelectActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (puzzle.getAnswerForChoice(holder.getAdapterPosition())){
                         //correct answer
+
                         currentTask.finish(true);
                         finish();
+                        Music.doPositiveCheer(TextSelectActivity.this);
                     } else{
                         //wrong answer
                         Toast.makeText(TextSelectActivity.this,"Wrong answer!",Toast.LENGTH_SHORT).show();
