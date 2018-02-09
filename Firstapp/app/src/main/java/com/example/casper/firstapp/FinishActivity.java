@@ -17,6 +17,20 @@ public class FinishActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onPause() {
+        super.onPause();
+        Music.doThemeSong(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Music.doThemeSong(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Music.doThemeSong(thisf);
     }
 }
