@@ -1,6 +1,7 @@
 package com.example.casper.firstapp;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         storyLine = StoryLine.open(this,MyDemoStoryLineDBHelper.class);
+
+        maxVolume();
+
         Music.doThemeSong(this);
     }
 
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG,"User clicked the start button");
         Intent intent = new Intent(this, StoryActivity.class);
         startActivity(intent);
+
     }
 
     @Override
@@ -83,5 +88,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Music.doThemeSong(this);
+    }
+
+    private void maxVolume() {
+        AudioManager am =
+                (AudioManager) getSystemService(this.AUDIO_SERVICE);
+
+        am.setStreamVolume(
+                AudioManager.STREAM_MUSIC,
+                am.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
+                0);
     }
 }

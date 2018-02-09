@@ -97,6 +97,8 @@ public class ImageSelectActivity extends AppCompatActivity {
                         //correct answer
                         currentTask.finish(true);
                         finish();
+
+                        Music.doPositiveCheer(ImageSelectActivity.this);
                     } else{
                         //wrong answer
                         Toast.makeText(ImageSelectActivity.this,"Wrong answer!",Toast.LENGTH_SHORT).show();

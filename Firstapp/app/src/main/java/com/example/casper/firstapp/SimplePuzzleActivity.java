@@ -47,6 +47,7 @@ public class SimplePuzzleActivity extends AppCompatActivity {
             //correct answer
             storyLine.currentTask().finish(true);
             finish();
+            Music.doPositiveCheer(SimplePuzzleActivity.this);
         } else {
             //wrong answer
             Toast.makeText(this,"Wrong answer",Toast.LENGTH_SHORT).show();
