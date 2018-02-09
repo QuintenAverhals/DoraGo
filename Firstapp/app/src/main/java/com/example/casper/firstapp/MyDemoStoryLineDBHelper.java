@@ -50,14 +50,11 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .question("Select image?")
                 .puzzleDone()
                 .taskDone();
-
-        // Riddle 1
-        // TODO Specify location
                 */
 
-        builder.addGPSTask("1")
-                .location(49.209543, 16.614235)
-                .radius(50)
+        builder.addGPSTask("riddle_1")
+                .location(49.214179, 16.622868)
+                .radius(500)
                 .choicePuzzle()
                 .question("What's furry, swings from tree to tree and goes ooh-ooh ahh-ahh?")
                 .hint("Think about Boots")
@@ -67,21 +64,49 @@ public class MyDemoStoryLineDBHelper extends StoryLineDatabaseHelper {
                 .puzzleDone()
                 .taskDone();
 
-        // Riddle 2
-        // TODO Specify location
+        builder.addGPSTask("riddle_2")
+                .location(49.213653,16.620948)
+                .radius(500)
+                .choicePuzzle()
+                .question("I need to find the big city, can you help me?")
+                .addChoice("city", true)
+                .addChoice("bridge", false)
+                .addChoice("boat", false)
+                .puzzleDone()
+                .taskDone();
+
+        builder.addGPSTask("riddle_3")
+                .location(49.214868,16.6290987)
+                .radius(500)
+                .choicePuzzle()
+                .question("What is the name of the sneaky fox?")
+                .addChoice("carter", false)
+                .addChoice("benny", false)
+                .addChoice("swiper", true)
+                .puzzleDone()
+                .taskDone();
 
         builder.addGPSTask("qrcode_1")
-                .location(49.209543, 16.614235)
-                .radius(500000)
+                .location(49.214768, 16.625078)
+                .radius(500)
                 .simplePuzzle()
                 .question("qrcode")
                 .answer("ball")
                 .puzzleDone()
                 .taskDone();
 
+        builder.addGPSTask("qrcode_1")
+                .location(49.212735, 16.617279)
+                .radius(500)
+                .simplePuzzle()
+                .question("qrcode")
+                .answer("guitar")
+                .puzzleDone()
+                .taskDone();
+
         builder.addGPSTask("swiper_1")
-                .location(49.209543, 16.614235)
-                .radius(500000)
+                .location(49.210016, 16.614779)
+                .radius(5000)
                 .simplePuzzle()
                 .question("swiper")
                 .answer("swiper no swiping")
